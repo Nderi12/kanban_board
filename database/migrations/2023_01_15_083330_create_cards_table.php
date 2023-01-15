@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Column;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,9 +14,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('columns', function (Blueprint $table) {
+        Schema::create('cards', function (Blueprint $table) {
             $table->id();
-            $table->string("title");
+            $table->string('title');
+            $table->string('description');
+            $table->string('status')->nullable();
+            $table->foreignIdFor(Column::class)->nullable()->constrained();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -28,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('columns');
+        Schema::dropIfExists('cards');
     }
 };

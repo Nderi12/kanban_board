@@ -22,4 +22,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/auth/register', [AuthController::class, 'registration'])->name('register');
 Route::post('/auth/login', [AuthController::class, 'login'])->name('login');
 
-Route::apiResource('posts', PostController::class)->middleware('auth:sanctum');
+Route::resource('columns', ColumnController::class)->middleware('auth:sanctum')->only(['index', 'store', 'update', 'destroy']);
+
+Route::resource('cards', CardController::class)->middleware('auth:sanctum')->only(['index', 'store', 'update', 'destroy']);
