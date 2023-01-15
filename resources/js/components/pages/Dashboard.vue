@@ -16,7 +16,7 @@
                     <div class="content-center brand">
                     <h1 class="h1-seo">DKB•</h1>
                     <h3>Welcome to a simplified Draggable Kanban Board.</h3>
-                        <a href="javascript:void(0)" class="btn btn-info btn-round btn-lg">Get Started</a>
+                        <a :href="$router.resolve({name: 'kanban'}).href" class="btn btn-info btn-round btn-lg">Get Started</a>
                     </div>
                 </div>
             </div>

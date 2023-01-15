@@ -32,7 +32,7 @@
                                             <i class="tim-icons icon-lock-circle"></i>
                                             </div>
                                         </div>
-                                        <input type="text" v-model="password" class="form-control" placeholder="Password">
+                                        <input type="text" v-model="password" class="form-control" placeholder="Password" >
                                         <div class="invalid-feedback d-block">{{ errors.password }}</div>
                                     </div>
                                     <div class="col-12 mt-3">
