@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\CardController;
+use App\Http\Controllers\ColumnController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -18,9 +20,6 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-
-Route::post('/auth/register', [AuthController::class, 'registration'])->name('register');
-Route::post('/auth/login', [AuthController::class, 'login'])->name('login');
 
 Route::resource('columns', ColumnController::class)->middleware('auth:sanctum')->only(['index', 'store', 'update', 'destroy']);
 

@@ -18,7 +18,7 @@
     </head>
     <body class="index-page">
         <div id="app">
-            <app-component></app-component>
+            <router-view></router-view>
         </div>
         @vite([
             'resources/js/app.js',
