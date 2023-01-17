@@ -11,6 +11,7 @@ export default defineConfig({
                 'resources/assets/demo/demo.css',
 
                 'resources/js/app.js',
+                
                 'resources/assets/js/core/jquery.min.js',
                 'resources/assets/js/core/popper.min.js',
                 'resources/assets/js/core/bootstrap.min.js',

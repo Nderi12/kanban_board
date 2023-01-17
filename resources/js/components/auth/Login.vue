@@ -12,7 +12,6 @@
                     <div class="col-lg-5 col-md-6 offset-lg-3 offset-md-0">
                         <div class="card">
                             <div class="card-header">
-                                <!-- <img class="card-img" src="#" alt="Card image"> -->
                                 <h2 class="card-title">Login</h2>
                             </div>
                             <div class="card-body">

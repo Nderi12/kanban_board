@@ -17,7 +17,7 @@ return new class extends Migration
         Schema::create('cards', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('description');
+            $table->string('description')->nullable();
             $table->string('status')->nullable();
             $table->foreignIdFor(Column::class)->nullable()->constrained();
             $table->timestamps();

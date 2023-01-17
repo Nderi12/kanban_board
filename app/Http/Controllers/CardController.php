@@ -36,7 +36,7 @@ class CardController extends Controller
         DB::transaction(function() use($request) {
             Card::create([
                 'title' => $request->title,
-                'description' => $request->description
+                'column_id' => $request->column_id
             ]);
         });
 
