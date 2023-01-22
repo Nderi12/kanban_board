@@ -224,7 +224,6 @@ export default {
         this.card.columnId = id;
     },
     editModal(id) {
-      console.log(id)
       this.getCard(id);
     },
     getCard(id) {
