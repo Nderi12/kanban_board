@@ -51,9 +51,13 @@ class CardController extends Controller
      * @param  \App\Models\Card  $card
      * @return \Illuminate\Http\Response
      */
-    public function show(Card $card)
+    public function show($id)
     {
-        //
+        $card = Card::where('id', $id)->first();
+
+        return response()->json([
+            'card' => $card
+        ], Response::HTTP_OK);
     }
 
     /**
@@ -63,11 +67,21 @@ class CardController extends Controller
      * @param  \App\Models\Card  $card
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Card $card)
+    public function update(Request $request, $id)
     {
-        $card->update(['column_id' => $request->columnId ]);
+        $card = Card::where('id', $id)->first();
 
-        return $card;
+        DB::transaction(function() use($card, $request) {
+            $card->update([
+                'title' => $request->title,
+            ]);
+            $card->save();
+        });
+
+
+        return response()->json([
+            'message' => 'Card Successfully Updated!'
+        ], Response::HTTP_OK);
     }
 
     /**

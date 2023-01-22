@@ -23,4 +23,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::resource('columns', ColumnController::class)->only(['index', 'store', 'update', 'destroy']);
 
-Route::resource('cards', CardController::class)->only(['index', 'store', 'update', 'destroy']);
+Route::resource('cards', CardController::class)->only(['index', 'show', 'store', 'update', 'destroy']);
