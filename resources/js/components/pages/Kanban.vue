@@ -54,7 +54,7 @@
                     <div class="modal-body">
                       <div class="form-group mb-3">
                         <label for="description">Title</label>
-                        <input class="form-control" v-model="card.title" placeholder="Title" type="text">
+                        <input class="form-control" v-model="card.title" placeholder="Title" type="text" style="color: black;">
                       </div>
                     </div>
                     <div class="modal-footer">
