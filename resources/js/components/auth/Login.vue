@@ -16,6 +16,7 @@
                             </div>
                             <div class="card-body">
                                 <form class="form" method="POST">
+                                        <p> Use credentials below:</p>
                                         <label for="">Email: admin@demo.com</label>
                                         <br>
                                         <label for="">Password: password</label>
