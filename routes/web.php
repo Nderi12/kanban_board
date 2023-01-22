@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/{any}', function () { return view('welcome'); })->where('any', '.*');
+Route::get('/{any}', function () { return view('welcome2'); })->where('any', '.*');
 
 Route::post('/login', [App\Http\Controllers\AccessController::class, 'login'])->name('login');
 Route::post('/register', [App\Http\Controllers\RegisterController::class, 'register'])->name('register');

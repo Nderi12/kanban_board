@@ -102,5 +102,14 @@ class CardController extends Controller
             'message' => 'Card deleted successfully!'
         ], Response::HTTP_OK);
     }
+
+    public function updateCardPosition(Request $request, $id)
+    {
+        $card = Card::where('id', $id)->first();
+
+        $card->update(['column_id' => $request->columnId ]);
+
+        return $card;
+    }
 }
 

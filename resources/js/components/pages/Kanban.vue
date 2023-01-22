@@ -1,5 +1,5 @@
-<template>
-    <div class="container">
+  <template>
+    <div>
         <!-- Top Navbar -->
         <TopNavbar />
         <!-- /Top Navbar -->
@@ -7,21 +7,21 @@
             <div class="main section">
               <img src="assets/images/path1.png" class="path">
                 <h1 class="text-center">Draggable Kanban Board</h1>
+                <div class="container">
                   <button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#createColumn">
                     Create New Column
                   </button>
-                <div class="row">
-                    <div class="card col-lg-4 card-columns m-2" v-for="column in columns" :key="column.title" :id="column.id">
-                        <div class="row justify-content-between mx-2 mt-2">
-                            <div class="card-header float-left"><h3>{{ column.title }}</h3></div>
-                            <div class="">
-                                <a class="btn btn-icon btn-sm btn-round btn-danger mr-2" @click="deleteColumn(column.id)"><i class="tim-icons icon-simple-remove"></i></a>
-                                <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-icon btn-sm btn-round btn-success" @click="updateColumnId(column.id)" data-bs-toggle="modal" data-bs-target="#createCard">
-                                  <i class="tim-icons icon-simple-add"></i>
-                                </button>
+                  <div class="scrollable-list">
+                    <div class="card col-lg-4 m-1" v-for="column in columns" :key="column.title" :id="column.id">
+                        <div class="card-header row mb-2">
+                          <div class="col-8" style="text-align: left; color: white;">
+                                {{ column.title }}
+                          </div>
+                          <div class="col-4" style="text-align: right;">
+                              <a class="" @click="deleteColumn(column.id)"><i class="tim-icons icon-trash-simple" style="color: pink;"></i></a>
+                              <a class="ml-2" @click="updateColumnId(column.id)"><i class="tim-icons icon-simple-add" style="color: white;"></i></a>
+                          </div>
                         </div>
-                    </div>
                         <draggable 
                             :list="column.cards"
                             :data-id="column.id"
@@ -33,20 +33,21 @@
                             @end="dragging = false"
                         >
                             <template #item="{ element }">
-                                <div class="card card-text p-2" style="background-color: #435181;">
+                                <div class="card p-2" :data-id="element.id" style="background-color: #435181;">
                                   <div class="row">
-                                      <div class="col-8">
-                                          <h6>{{ element.title }}</h6>
+                                      <div class="col-8" style="text-align: left; color: white;">
+                                            <i class="tim-icons icon-bullet-list-67 mr-2"></i>{{ element.title }}
                                       </div>
-                                      <div class="col-4 float-right">
-                                          <button type="button" class="btn btn-icon btn-round btn-primary" @click="editModal(element.id)" data-bs-toggle="modal" data-bs-target="#editModal"><i class="tim-icons icon-pencil"></i></button>
-                                          <a class="btn btn-icon btn-sm btn-round btn-danger mr-2" @click="deleteCard(element.id)"><i class="tim-icons icon-simple-remove"></i></a>
+                                      <div class="col-4" style="text-align: right;">
+                                          <a class="" @click="editModal(element.id)" data-bs-toggle="modal" data-bs-target="#editModal"><i class="tim-icons icon-pencil" style="color: white;"></i></a>
+                                          <a class="ml-2" @click="deleteCard(element.id)"><i class="tim-icons icon-simple-remove" style="color: white;"></i></a>
                                       </div>
                                   </div>
                                 </div>
                             </template>
                         </draggable>
                     </div>
+                  </div>
                 </div>
             </div>
             <!--Footer-->
@@ -184,20 +185,21 @@ export default {
     },
     update(id, columnId){
       var data = {
-        columnId: columnId
+        columnId: columnId,
+        _method: "PATCH",
       }
-        axios.put(`/api/cards/${id}`, data).then(response=>{
+        axios.post(`/api/update-position/${id}`, data).then(response=>{
           console.log(response)
         }).catch(error=>{
             console.log(error)
         })
     },
     checkMove: function(e) {
-      console.log(e)
-    //   var cardId = e.dragged.attributes["data-id"].value;
-    //   var columnId = e.to.attributes["data-id"].value;
-    //   this.update(cardId, columnId)
-    //   window.console.log("Future index: " + e.draggedContext.futureIndex);
+      var cardId = e.dragged.attributes["data-id"].value;
+      var columnId = e.to.attributes["data-id"].value;
+      console.log(columnId)
+      this.update(cardId, columnId)
+      window.console.log("Future index: " + e.draggedContext.futureIndex);
     },
     deleteColumn(id) {
       if (confirm("Are you sure to delete this column ?")) {
@@ -263,5 +265,27 @@ export default {
   background: #f7fafc;
   border: 1px solid #4299e1;
 }
+
+.container {
+  overflow-x: auto;
+  width: 100%;
+}
+.scrollable-list {
+  grid-template-columns: repeat(auto-fill, minmax(600px, 1fr));
+  grid-gap: 10px;
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+@media (max-width: 992px) {
+  .container {
+    overflow-y: auto;
+  }
+  .scrollable-list {
+    grid-template-columns: repeat(1, 1fr);
+    display: grid;
+  }
+}
+
 </style>
 

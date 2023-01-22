@@ -1,5 +1,4 @@
 <template>
-    <div>
         <!-- Navbar -->
         <nav class="navbar navbar-expand-lg fixed-top navbar-transparent " color-on-scroll="100">
             <div class="container">
@@ -39,7 +38,6 @@
             </div>
         </nav>
         <!-- End Navbar -->
-    </div>
 </template>
 <script setup>
 import { computed, onMounted } from 'vue'
