@@ -189,7 +189,6 @@ export default {
         _method: "PATCH",
       }
         axios.post(`/api/update-position/${id}`, data).then(response=>{
-          console.log(response)
         }).catch(error=>{
             console.log(error)
         })
@@ -197,9 +196,7 @@ export default {
     checkMove: function(e) {
       var cardId = e.dragged.attributes["data-id"].value;
       var columnId = e.to.attributes["data-id"].value;
-      console.log(columnId)
       this.update(cardId, columnId)
-      window.console.log("Future index: " + e.draggedContext.futureIndex);
     },
     deleteColumn(id) {
       if (confirm("Are you sure to delete this column ?")) {
@@ -234,7 +231,6 @@ export default {
       axios
         .get("/api/cards/" + id)
         .then((response) => {
-          console.log(response)
           const { id, title } = response.data.card;
           this.editableCard.id = id;
           this.editableCard.title = title;
