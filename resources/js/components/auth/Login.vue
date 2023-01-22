@@ -16,6 +16,9 @@
                             </div>
                             <div class="card-body">
                                 <form class="form" method="POST">
+                                        <label for="">Email: admin@demo.com</label>
+                                        <br>
+                                        <label for="">Password: password</label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <div class="input-group-text">
