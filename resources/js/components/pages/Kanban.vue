@@ -19,7 +19,7 @@
                           </div>
                           <div class="col-4" style="text-align: right;">
                               <a class="" @click="deleteColumn(column.id)"><i class="tim-icons icon-trash-simple" style="color: pink;"></i></a>
-                              <a class="ml-2" @click="updateColumnId(column.id)"><i class="tim-icons icon-simple-add" style="color: white;"></i></a>
+                              <a class="ml-2" @click="createCardModal(column.id)" data-bs-toggle="modal" data-bs-target="#createCard"><i class="tim-icons icon-simple-add" style="color: white;"></i></a>
                           </div>
                         </div>
                         <draggable 
@@ -174,14 +174,17 @@ export default {
         console.log(error);
       });
     },
+    createCardModal(id){
+      this.columnId = id;
+    },
     //To-do: add a new method
     createNewCard(){
       axios.post("/api/cards/", {
         title: this.card.title,
-        column_id: this.card.columnId,
+        column_id: this.columnId,
         _method: "POST",
       });
-      this.getColumns();
+      window.location.reload(true);
     },
     update(id, columnId){
       var data = {
